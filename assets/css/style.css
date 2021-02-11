@@ -39,10 +39,13 @@ header {
   font-size: 1.2rem;
   color: #fff;
   align-self: flex-end;
+  letter-spacing: 4px;
 }
 
 .nav-right {
   flex: 1;
+  display: flex;
+  justify-content: space-between;
 }
 
 .fa-dyalog {
@@ -50,11 +53,29 @@ header {
   font-size: 2.5rem;
 }
 
-ul {
+.nav-links {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  width: 100%;
 }
+/*aa*/
+.nav-links >li {
+  position: relative;
+  text-transform: uppercase;
+}
+
+.nav-link::before,
+.nav-link::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: chocolate;
+  position: absolute;
+  left: 0;
+}
+
+/*dd*/
 
 li > a {
   text-decoration: none;
@@ -67,6 +88,20 @@ li > a:hover {
   transition: 1s;
 }
 
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(226, 226, 226);
+  margin: 5px;
+  transition: all 0.4s ease;
+}
+
+
 /*BACKGROUND:*/
 
 .background::before {
@@ -74,7 +109,7 @@ li > a:hover {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   z-index: -1;
   background: var(--color-darkblue);
@@ -99,7 +134,7 @@ h1 {
 }
 
 .background-statistics {
-  padding-top: 25rem;
+  padding-top: 20rem;
   display: flex;
   justify-content: space-between;
 }
@@ -112,11 +147,15 @@ h1 {
 
 /*BACKGROUND STATS:*/
 
+.background-statistics {
+  flex-wrap: wrap;
+}
+
 .stat {
   flex: 1;
 }
 
-.icon{
+.icon {
   color: #fff;
   font-size: 3rem;
 }
@@ -129,7 +168,77 @@ h1 {
 
 /*MEDIA QUERIES*/
 
-@media (min-width: 300px)and (max-width: 1500px) {
+@media screen and (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+  .nav-right {
+    justify-content: flex-end;
+  }
+  .nav-links {
+    position: absolute;
+    right: 0px;
+    height: 80vh;
+    top: 8vh;
+    background-color: rgba(0,0,0,0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav-links li {
+    opacity: 0;
+  }
+  .burger {
+    display: block;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 1460px) {
+  .background-statistics {
+    padding-top: 10rem;
+    text-align: center;
+  }
+  .stat {
+    min-width: 50%;
+    margin-bottom: 2rem;
+  }
+}
+
+/*Pseudo classes and animation:*/
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFade{
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+  opacity: 0;
+}
+
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/*@media (min-width: 300px)and (max-width: 1500px) {
   .background-statistics {
     display: block;
   }
@@ -137,3 +246,5 @@ h1 {
     width: 50%;
   }
 }
+
+*/
