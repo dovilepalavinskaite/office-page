@@ -9,7 +9,6 @@ $(document).ready(function () {
 			$(".header").removeClass("scrolled"); 
 		} 
 	}); 
-});
 
 
 // Burger menu functionality:
@@ -37,3 +36,28 @@ const navSlider = () => {
 }
 
 navSlider();
+
+
+// Content appears when scrooled:
+
+window.onload = function() {
+	const effect = document.querySelector('.effect');
+
+	window.addEventListener('scroll', scrollEffect);
+
+	function scrollEffect () {
+		if(window.scrollY >= 1000) {
+			effect.style.opacity = '1';
+			effect.style.transform = 'translateX(0px)';
+			effect.style.transition = '1s ease-in-out';
+		}
+		else {
+			effect.style.opacity = '0';
+			effect.style.transform = 'translateX(-50px)';
+		}
+	}
+	scrollEffect();
+}
+
+
+});
